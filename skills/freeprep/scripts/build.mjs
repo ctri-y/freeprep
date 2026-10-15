@@ -40,7 +40,8 @@ const read=name=>fs.readFileSync(path.join(engine,name),'utf8');
 const css=read('base.css')+'\n'+read('extra.css')+'\n'+read('public.css');
 const js=['diagrams.js','annotations.js','solutions.js','app.js'].map(read).join('\n');
 const values={TITLE:escape(data.meta.title),DESCRIPTION:escape(data.meta.scope),STYLE:css,DATA:JSON.stringify(data).replace(/</g,'\\u003c'),APP:js};
-const html=read('template.html').replace(/\/\*(TITLE|DESCRIPTION|STYLE|DATA|APP)\*\//g,(_,key)=>values[key]);
+const notice='<!--\nFreePrep HTML player license; course content retains its own rights.\n\n'+fs.readFileSync(path.join(skill,'LICENSE.txt'),'utf8').trim()+'\n-->\n';
+const html=notice+read('template.html').replace(/\/\*(TITLE|DESCRIPTION|STYLE|DATA|APP)\*\//g,(_,key)=>values[key]);
 fs.mkdirSync(path.dirname(output),{recursive:true});
 fs.writeFileSync(output,html);
 const siblings={

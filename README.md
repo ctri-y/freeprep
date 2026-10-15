@@ -21,7 +21,7 @@ FreePrep 是一个开放的备课 skill，附带可复用的 HTML 课件引擎�
 
 ## 开始备课
 
-下载仓库后，把 `skills/freeprep` 整个文件夹安装到你的助手的 skill 目录。Codex 可使用 `$skill-installer` 安装：
+可以直接下载 [最新版 skill ZIP](https://github.com/ctri-y/freeprep/releases/latest/download/freeprep-skill-v0.1.0.zip)，或下载仓库后，把 `skills/freeprep` 整个文件夹安装到你的助手的 skill 目录。Codex 可使用 `$skill-installer` 安装：
 
 ```text
 $skill-installer install https://github.com/ctri-y/freeprep/tree/main/skills/freeprep
