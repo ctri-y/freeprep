@@ -1,0 +1,4 @@
+interface:
+  display_name: "FreePrep · 只管教"
+  short_description: "按教材和官方要求备齐课件、分层练习与完整解析，让家教老师专注教学"
+  default_prompt: "使用 $freeprep 为指定教材章节制作完整教学材料，核验题源，并按我的反馈修改。"

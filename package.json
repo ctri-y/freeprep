@@ -1,0 +1,17 @@
+{
+  "name": "freeprep",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A source-aware teaching preparation skill and offline HTML lesson player",
+  "license": "MIT",
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "check": "python3 skills/freeprep/scripts/check_materials.py --course examples/motion/course.json",
+    "build": "npm run check && node skills/freeprep/scripts/build.mjs examples/motion/course.json --out dist/index.html",
+    "test:unit": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "test:browser": "node tests/browser.mjs",
+    "test": "npm run build && npm run test:unit && npm run test:browser"
+  },
+  "devDependencies": {"playwright": "1.62.1"}
+}

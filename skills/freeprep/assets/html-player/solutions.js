@@ -1,0 +1,10 @@
+
+function completeSolution(q,figure,escape,stem){
+ const s=q.solution,st=typeof pageState==='function'?pageState():state(),n=st.solutionStep??s.steps.length;
+ return `<div class="solution-top"><div class="micro">完整图解 / 练习 ${escape(q.id.slice(-2))}</div><p class="solution-problem practice-stem" data-ink-anchor="question">${escape(stem)}</p><div class="solution-facts"><div><span>已知</span><p>${escape(s.known)}</p></div><div><span>所求</span><p>${escape(s.goal)}</p></div></div></div><div class="solution-grid"><div class="solution-visual">${figure}<div class="solution-warning"><span>易错点</span><p>${escape(s.pitfalls)}</p></div></div><section class="solution-calculation"><div class="solution-control"><div class="micro">画图 → 列式 → 代入 → 核对</div><button class="subtle" id="solution-step">${n>=s.steps.length?'收起后逐步讲解':`展开第 ${n+1} 步`}</button></div><div class="steps">${s.steps.slice(0,n).map((step,i)=>`<div class="step" data-ink-anchor="solution-step-${i}" data-reveal-key="solution-${i}"><span class="step-number">${String(i+1).padStart(2,'0')}</span><div><div class="step-main solution-equation">${solutionEquation(step.formula,escape)}</div><div class="step-why">${escape(step.why)}</div></div></div>`).join('')}</div>${n>=s.steps.length?`<div class="solution-check" data-reveal-key="solution-check"><span>结果核对</span><p>${escape(s.check)}</p></div>`:''}</section></div><div class="solution-back"><button class="subtle" data-goto-question="${escape(q.id)}">← 返回原题</button><span>此页用于讲评；学生打印题单不包含答案页。</span></div>`;
+}
+function bindSolutionControls(q){const button=document.querySelector('#solution-step');if(button)button.onclick=()=>{const st=typeof pageState==='function'?pageState():state(),n=st.solutionStep??q.solution.steps.length;st.solutionStep=n>=q.solution.steps.length?0:n+1;render();};document.querySelectorAll('[data-goto-question]').forEach(b=>b.onclick=()=>go(PAGES.findIndex(p=>p.id===b.dataset.gotoQuestion)));const link=document.querySelector('#solution-open');if(link)link.onclick=()=>go(PAGES.findIndex(p=>p.id==='SOL-'+q.id));}
+
+function solutionEquation(value,escape){return formatMath(value);}
+
+function formatMath(value){return E(value);}

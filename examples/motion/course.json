@@ -1,0 +1,884 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "id": "freeprep-motion-demo-v1",
+    "title": "从位置到变化",
+    "short": "运动描述 · FreePrep 演示",
+    "scope": "可复现的原创演示小样，用于展示课件引擎；不是完整章节或考试题库。",
+    "book": "FreePrep 原创演示，不对应指定教材",
+    "region": "原创示例 · 非考试原题",
+    "groups": [
+      {
+        "n": "01",
+        "title": "位置与位移",
+        "mods": [
+          "M1"
+        ]
+      },
+      {
+        "n": "02",
+        "title": "图像与变化",
+        "mods": [
+          "M2"
+        ]
+      }
+    ],
+    "modules": {
+      "M1": "位置与位移",
+      "M2": "图像与变化"
+    }
+  },
+  "config": {
+    "subject": "physics",
+    "mode": "demo",
+    "scope": "引擎演示，不替代完整备课",
+    "pacing": "teacher-decides",
+    "deliverables": [
+      "html",
+      "storyboard",
+      "teacher-solutions"
+    ],
+    "excluded_deliverables": [
+      "prelearning"
+    ],
+    "practice_share_min": 0.5,
+    "max_original_questions": 2,
+    "require_question_source_footer": true
+  },
+  "sources": [],
+  "questions": [
+    {
+      "id": "Q01",
+      "title": "路程相同吗？先追踪位置",
+      "module": "M1",
+      "target": "用分段位置变化区分位移、路程与两种平均量",
+      "difficulty": "中档",
+      "question": "一物体沿直线运动，其 x–t 图像如图，折线各段均表示匀速运动。t = 0 s 时 x = −2 m，2 s 时到达 x = 4 m，5 s 时回到 x = 1 m。求全程位移、路程、平均速度与平均速率，并解释两个平均量为何不同。",
+      "answer": "位移 +3 m；路程 9 m；平均速度 +0.6 m/s；平均速率 1.8 m/s。",
+      "reasoning": "先看末位置减初位置，再把各段运动的长度相加；两个平均量分别用位移和路程除以同一段总时间。",
+      "review_focus": "位置可正可负，路程逐段取绝对值；正号表示所选坐标正方向。",
+      "source_kind": "original",
+      "citation_label": "FreePrep 2026 年原创演示题；非考试原题",
+      "source_year": "2026",
+      "source_place": "FreePrep",
+      "year_kind": "创作年",
+      "evidence_level": "公开仓库原创示例，数值独立复算",
+      "adaptation": "无：原创示例",
+      "solution": {
+        "known": "x₀ = −2 m，x₂ = 4 m，x₅ = 1 m；总时间 5 s。",
+        "goal": "全程位移、路程、平均速度与平均速率。",
+        "steps": [
+          {
+            "formula": "Δx = 1 − (−2) = +3 m",
+            "why": "位移只取决于始末位置；正号保留方向。"
+          },
+          {
+            "formula": "s = |4 − (−2)| + |1 − 4| = 9 m",
+            "why": "在转向处切开，每段距离取正值，再相加。"
+          },
+          {
+            "formula": "v̄ = Δx / Δt = 3 / 5 = +0.6 m/s",
+            "why": "平均速度使用位移，并注明同一段总时间。"
+          },
+          {
+            "formula": "平均速率 = s / Δt = 9 / 5 = 1.8 m/s",
+            "why": "路程包含折返，数值大于平均速度的大小。"
+          }
+        ],
+        "check": "|Δx| = 3 m ≤ s = 9 m；两个平均量的单位均为 m/s。",
+        "pitfalls": "不能把 6 m 和 −3 m 直接相加当路程；平均速度不是两段速度的算术平均。"
+      },
+      "solution_diagram": {
+        "type": "numberline",
+        "xmin": -2,
+        "xmax": 4,
+        "positions": [
+          {
+            "x": -2,
+            "label": "起点 −2 m"
+          },
+          {
+            "x": 4,
+            "label": "转向点 4 m"
+          },
+          {
+            "x": 1,
+            "label": "终点 1 m"
+          }
+        ],
+        "routes": [
+          [
+            -2,
+            4
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "title": "把两个阶段落到同一坐标系",
+        "caption": "第一段向右 6 m，第二段向左 3 m；箭头只用于教师解析。"
+      }
+    },
+    {
+      "id": "Q02",
+      "title": "回到原点，也能一直在加速？",
+      "module": "M2",
+      "target": "用速度符号、斜率和面积解释反向运动",
+      "difficulty": "提高",
+      "question": "一物体做直线运动，0～4 s 的速度满足 v = 4 − 2t（国际单位制），图像如图。有人说：“加速度始终为负，所以物体一直减速；4 s 内平均速度为 0，所以它没有运动。”逐条反驳，并求转向时刻、4 s 内位移和路程，以及 0～2 s、2～4 s 两段的速度大小如何变化。",
+      "answer": "两句均错。2 s 转向；位移 0，路程 8 m；前 2 s 速率减小，后 2 s 速率增大。加速度始终为 −2 m/s²。",
+      "reasoning": "速度的符号给方向，速度的大小给快慢。斜率给加速度，负加速度并不总让速率减小。跨越时间轴后，两个三角形的有符号面积相抵，路程却要相加。",
+      "review_focus": "v = 0 的瞬间仍有 a = −2 m/s²；位移为零只说明回到初始位置。",
+      "source_kind": "original",
+      "citation_label": "FreePrep 2026 年原创演示题；非考试原题",
+      "source_year": "2026",
+      "source_place": "FreePrep",
+      "year_kind": "创作年",
+      "evidence_level": "公开仓库原创示例，解析采用理想直线运动模型",
+      "adaptation": "无：原创示例",
+      "solution": {
+        "known": "v(t) = 4 − 2t，0 ≤ t ≤ 4 s。",
+        "goal": "判断说法；求转向时刻、全程位移及路程。",
+        "steps": [
+          {
+            "formula": "a = (−4 − 4) / (4 − 0) = −2 m/s²",
+            "why": "直线斜率不变。0～2 s 时 v > 0、a < 0，速率减小；2～4 s 时 v < 0、a < 0，速率增大。"
+          },
+          {
+            "formula": "v = 0 ⇒ 4 − 2t = 0 ⇒ t = 2 s",
+            "why": "转向前后速度异号；单凭某瞬间速度为零不足以判断是否转向。"
+          },
+          {
+            "formula": "Δx = ½ × 2 × 4 − ½ × 2 × 4 = 0 m",
+            "why": "时间轴上方与下方给出符号相反的位移。"
+          },
+          {
+            "formula": "s = ½ × 2 × 4 + ½ × 2 × 4 = 8 m",
+            "why": "路程按两段距离累加。平均速度为零，平均速率则为 8 / 4 = 2 m/s。"
+          }
+        ],
+        "check": "另用 Δx = 4 × 4 + ½ × (−2) × 4² = 0 m 交叉复算；路程为正且不小于位移大小。",
+        "pitfalls": "a < 0 不能单独推出减速。把速度为零和加速度为零混为一谈，会错判转向处的运动。"
+      },
+      "solution_diagram": {
+        "type": "chart",
+        "points": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            -4
+          ]
+        ],
+        "xmax": 4,
+        "ymin": -4,
+        "ymax": 4,
+        "xt": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "yt": [
+          -4,
+          -2,
+          0,
+          2,
+          4
+        ],
+        "xlabel": "t / s",
+        "ylabel": "v / (m·s⁻¹)",
+        "title": "转向前后分开计算",
+        "caption": "阴影是计算区域；上方面积给正位移，下方面积给负位移，路程相加。",
+        "areas": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              4,
+              -4
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "id": "T01",
+      "title": "先选坐标，位置才有意义",
+      "module": "M1",
+      "kind": "teaching",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "坐标记录物体相对于选定原点的位置；正方向由我们先约定。",
+      "core_concept": "坐标记录物体相对于选定原点的位置；正方向由我们先约定。",
+      "required_equations": [],
+      "required_diagram": "同一条直线上的两个位置",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "坐标记录物体相对于选定原点的位置；正方向由我们先约定。",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "先交代“相对谁、从哪算、哪边为正”，再写位置。",
+      "diagram": {
+        "type": "numberline",
+        "xmin": -2,
+        "xmax": 4,
+        "positions": [
+          {
+            "x": -2,
+            "label": "A"
+          },
+          {
+            "x": 4,
+            "label": "B"
+          }
+        ],
+        "title": "同一条直线上的两个位置",
+        "caption": "一维坐标示意：原点与向右正方向已经约定。"
+      }
+    },
+    {
+      "id": "T02",
+      "title": "位移只问：终点相对起点在哪",
+      "module": "M1",
+      "kind": "teaching",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "位移描述位置的变化，路程记录实际走过的路径长度。",
+      "core_concept": "位移描述位置的变化，路程记录实际走过的路径长度。",
+      "required_equations": [
+        "Δx = x末 − x初",
+        "|Δx| ≤ s"
+      ],
+      "required_diagram": "把两个阶段落到同一坐标系",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "位移描述位置的变化，路程记录实际走过的路径长度。",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "位移看始末；路程沿路径逐段累计。",
+      "diagram": {
+        "type": "numberline",
+        "xmin": -2,
+        "xmax": 4,
+        "positions": [
+          {
+            "x": -2,
+            "label": "起点 −2 m"
+          },
+          {
+            "x": 4,
+            "label": "转向点 4 m"
+          },
+          {
+            "x": 1,
+            "label": "终点 1 m"
+          }
+        ],
+        "routes": [
+          [
+            -2,
+            4
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "title": "把两个阶段落到同一坐标系",
+        "caption": "第一段向右 6 m，第二段向左 3 m；箭头只用于教师解析。"
+      }
+    },
+    {
+      "id": "T03",
+      "title": "平均速度：把变化与时间配对",
+      "module": "M1",
+      "kind": "teaching",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "平均速度必须指明哪一段时间，用该段位移除以时间。",
+      "core_concept": "平均速度必须指明哪一段时间，用该段位移除以时间。",
+      "required_equations": [
+        "v̄ = Δx / Δt"
+      ],
+      "required_diagram": "同一区间，两种定义",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "平均速度必须指明哪一段时间，用该段位移除以时间。",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "先锁定时间区间，再决定分子用哪一种变化量。",
+      "diagram": {
+        "type": "map",
+        "items": [
+          {
+            "title": "确定研究区间",
+            "text": "先标起止时刻，位移和时间使用同一段过程。"
+          },
+          {
+            "title": "区分两个平均量",
+            "text": "平均速度看位移；平均速率看路程。"
+          },
+          {
+            "title": "检查信息是否足够",
+            "text": "只知道平均速度，不能确定每个瞬间的速度。"
+          }
+        ],
+        "title": "同一区间，两种定义",
+        "caption": "定义之间的关系示意；不是实验数据。"
+      }
+    },
+    {
+      "id": "Q01",
+      "title": "路程相同吗？先追踪位置",
+      "module": "M1",
+      "kind": "practice",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "用分段位置变化区分位移、路程与两种平均量",
+      "core_concept": "用分段位置变化区分位移、路程与两种平均量",
+      "required_equations": [],
+      "required_diagram": "题设 x–t 折线",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "完整题干和全部已知条件",
+      "progressively_revealed": "教师主动展开推理，再展示答案；保留学生独立作答阶段",
+      "final_takeaway": "用分段位置变化区分位移、路程与两种平均量",
+      "diagram": {
+        "type": "chart",
+        "points": [
+          [
+            0,
+            -2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "xmax": 5,
+        "ymin": -4,
+        "ymax": 6,
+        "xt": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "yt": [
+          -4,
+          -2,
+          0,
+          2,
+          4,
+          6
+        ],
+        "xlabel": "t / s",
+        "ylabel": "x / m",
+        "title": "题设 x–t 折线",
+        "caption": "FreePrep 原创题设图；连线各段均为匀速运动。"
+      }
+    },
+    {
+      "id": "SOL-Q01",
+      "title": "位移、路程与两个平均量",
+      "module": "M1",
+      "kind": "solution",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "用分段位置变化区分位移、路程与两种平均量",
+      "core_concept": "用分段位置变化区分位移、路程与两种平均量",
+      "required_equations": [],
+      "required_diagram": "把两个阶段落到同一坐标系",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "完整题目图解与分步计算",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "完整题干和全部已知条件",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "用分段位置变化区分位移、路程与两种平均量",
+      "diagram": {
+        "type": "numberline",
+        "xmin": -2,
+        "xmax": 4,
+        "positions": [
+          {
+            "x": -2,
+            "label": "起点 −2 m"
+          },
+          {
+            "x": 4,
+            "label": "转向点 4 m"
+          },
+          {
+            "x": 1,
+            "label": "终点 1 m"
+          }
+        ],
+        "routes": [
+          [
+            -2,
+            4
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "title": "把两个阶段落到同一坐标系",
+        "caption": "第一段向右 6 m，第二段向左 3 m；箭头只用于教师解析。"
+      },
+      "question_id": "Q01"
+    },
+    {
+      "id": "T04",
+      "title": "图像的纵坐标和斜率，各管一件事",
+      "module": "M2",
+      "kind": "teaching",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "x–t 图的纵坐标是位置，斜率对应速度；v–t 图的纵坐标才是速度。",
+      "core_concept": "x–t 图的纵坐标是位置，斜率对应速度；v–t 图的纵坐标才是速度。",
+      "required_equations": [
+        "a = Δv / Δt"
+      ],
+      "required_diagram": "先读坐标轴，再谈斜率",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "x–t 图的纵坐标是位置，斜率对应速度；v–t 图的纵坐标才是速度。",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "先读轴名和单位，再区分纵坐标、斜率和运动方向。",
+      "diagram": {
+        "type": "chart",
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "xmax": 4,
+        "ymax": 8,
+        "xt": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "yt": [
+          0,
+          2,
+          4,
+          6,
+          8
+        ],
+        "xlabel": "t / s",
+        "ylabel": "v / (m·s⁻¹)",
+        "title": "先读坐标轴，再谈斜率",
+        "caption": "原创理想模型：v = 2 + t。纵轴正方向向上。"
+      }
+    },
+    {
+      "id": "T05",
+      "title": "动手改变参数，观察同一套模型",
+      "module": "M2",
+      "kind": "teaching",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "改变初速度或加速度，让速度图像和计算结果同时变化。",
+      "core_concept": "改变初速度或加速度，让速度图像和计算结果同时变化。",
+      "required_equations": [
+        "v = v₀ + at",
+        "Δx = v₀t + ½at²"
+      ],
+      "required_diagram": "可调的直线运动模型",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "改变初速度或加速度，让速度图像和计算结果同时变化。",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "模型演示帮助检验判断，学生仍需用定义解释结果。",
+      "diagram": {
+        "type": "demo",
+        "mode": "motion",
+        "v0": 2,
+        "a": 1,
+        "title": "可调的直线运动模型",
+        "caption": "模型演示：加速度恒定，运动可反向；滑块结果由同一公式计算。"
+      }
+    },
+    {
+      "id": "Q02",
+      "title": "回到原点，也能一直在加速？",
+      "module": "M2",
+      "kind": "practice",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "用速度符号、斜率和面积解释反向运动",
+      "core_concept": "用速度符号、斜率和面积解释反向运动",
+      "required_equations": [
+        "v = 4 − 2t"
+      ],
+      "required_diagram": "有符号速度与时间",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "完整题干和全部已知条件",
+      "progressively_revealed": "教师主动展开推理，再展示答案；保留学生独立作答阶段",
+      "final_takeaway": "用速度符号、斜率和面积解释反向运动",
+      "diagram": {
+        "type": "chart",
+        "points": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            -4
+          ]
+        ],
+        "xmax": 4,
+        "ymin": -4,
+        "ymax": 4,
+        "xt": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "yt": [
+          -4,
+          -2,
+          0,
+          2,
+          4
+        ],
+        "xlabel": "t / s",
+        "ylabel": "v / (m·s⁻¹)",
+        "title": "有符号速度与时间",
+        "caption": "FreePrep 原创题设图；v = 4 − 2t，允许物体反向。"
+      }
+    },
+    {
+      "id": "SOL-Q02",
+      "title": "转向点两侧，分别追踪符号与面积",
+      "module": "M2",
+      "kind": "solution",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "用速度符号、斜率和面积解释反向运动",
+      "core_concept": "用速度符号、斜率和面积解释反向运动",
+      "required_equations": [],
+      "required_diagram": "转向前后分开计算",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "完整题目图解与分步计算",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "完整题干和全部已知条件",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "用速度符号、斜率和面积解释反向运动",
+      "diagram": {
+        "type": "chart",
+        "points": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            -4
+          ]
+        ],
+        "xmax": 4,
+        "ymin": -4,
+        "ymax": 4,
+        "xt": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "yt": [
+          -4,
+          -2,
+          0,
+          2,
+          4
+        ],
+        "xlabel": "t / s",
+        "ylabel": "v / (m·s⁻¹)",
+        "title": "转向前后分开计算",
+        "caption": "阴影是计算区域；上方面积给正位移，下方面积给负位移，路程相加。",
+        "areas": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              4,
+              -4
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        ]
+      },
+      "question_id": "Q02"
+    },
+    {
+      "id": "T06",
+      "title": "把判断顺序带到下一道题",
+      "module": "M2",
+      "kind": "teaching",
+      "content_locator": "原创演示内容；不对应任何指定教材页码",
+      "teaching_objective": "每个符号、图形和计算步骤，都要能回到物理定义。",
+      "core_concept": "每个符号、图形和计算步骤，都要能回到物理定义。",
+      "required_equations": [],
+      "required_diagram": "一条可以复用的推理链",
+      "logical_sequence": [
+        "观察题设或图像",
+        "辨认定义与条件",
+        "独立推理或计算",
+        "核对量纲和边界"
+      ],
+      "recommended_slide_archetype": "左侧推理、右侧证据图",
+      "visual_hierarchy": "标题 → 核心问题 → 图像与步骤 → 关键结论；出处保留在底部",
+      "appear_immediately": "每个符号、图形和计算步骤，都要能回到物理定义。",
+      "progressively_revealed": "逐条展开计算或解释步骤",
+      "final_takeaway": "说清依据，再计算；写出数值，也解释它的含义。",
+      "diagram": {
+        "type": "map",
+        "items": [
+          {
+            "title": "位置 → 位移",
+            "text": "锁定起止位置；求末坐标减初坐标。"
+          },
+          {
+            "title": "速度 → 加速度",
+            "text": "先分辨方向与大小，再看变化率。"
+          },
+          {
+            "title": "图像 → 过程",
+            "text": "先读坐标轴，再解释纵坐标、斜率与适用范围。"
+          }
+        ],
+        "title": "一条可以复用的推理链",
+        "caption": "概念关系整理；用于教师检视学生解释是否闭合。"
+      }
+    }
+  ],
+  "lessons": {
+    "T01": {
+      "core": "坐标记录物体相对于选定原点的位置；正方向由我们先约定。",
+      "steps": [
+        {
+          "main": "先说明参考系和原点",
+          "why": "例如以地面为参考系，在地面上选定固定原点。",
+          "math": false
+        },
+        {
+          "main": "xA = −2 m；xB = +4 m",
+          "why": "负号表示在原点的负方向，位置坐标不是距离。",
+          "math": true
+        }
+      ]
+    },
+    "T02": {
+      "core": "位移描述位置的变化，路程记录实际走过的路径长度。",
+      "steps": [
+        {
+          "main": "Δx = x末 − x初",
+          "why": "顺序不能颠倒；坐标和位移都要保留符号。",
+          "math": true
+        },
+        {
+          "main": "s = 各段路径长度之和",
+          "why": "有折返时，路程通常大于位移的大小。",
+          "math": false
+        },
+        {
+          "main": "|Δx| ≤ s",
+          "why": "沿直线始终不反向时取等号。",
+          "math": true
+        }
+      ]
+    },
+    "T03": {
+      "core": "平均速度必须指明哪一段时间，用该段位移除以时间。",
+      "steps": [
+        {
+          "main": "v̄ = Δx / Δt",
+          "why": "这是平均速度的定义，方向与位移一致。",
+          "math": true
+        },
+        {
+          "main": "平均速率 = s / Δt",
+          "why": "平均速率是非负标量，不要与平均速度混用。",
+          "math": false
+        },
+        {
+          "main": "分段平均速度一般不能直接取算术平均",
+          "why": "各段用时不相等时，要用总位移除以总时间。",
+          "math": false
+        }
+      ]
+    },
+    "T04": {
+      "core": "x–t 图的纵坐标是位置，斜率对应速度；v–t 图的纵坐标才是速度。",
+      "steps": [
+        {
+          "main": "v–t 图：读纵坐标得到有符号速度",
+          "why": "位于时间轴下方表示沿负方向运动，不能称为“速度大小为负”。",
+          "math": false
+        },
+        {
+          "main": "a = Δv / Δt",
+          "why": "直线段的斜率给出该段恒定加速度。",
+          "math": true
+        },
+        {
+          "main": "速度大小是否增加，要同时看 v 和 a 的方向",
+          "why": "同向时速率增加；反向时速率减小。",
+          "math": false
+        }
+      ]
+    },
+    "T05": {
+      "core": "改变初速度或加速度，让速度图像和计算结果同时变化。",
+      "steps": [
+        {
+          "main": "v = v₀ + at",
+          "why": "只适用于加速度恒定的模型。",
+          "math": true
+        },
+        {
+          "main": "Δx = v₀t + ½at²",
+          "why": "位移保留符号；存在反向时不能当作路程。",
+          "math": true
+        },
+        {
+          "main": "试把 a 调成负值，让速度跨越零",
+          "why": "观察图像穿过时间轴时，运动方向如何改变。",
+          "math": false
+        }
+      ]
+    },
+    "T06": {
+      "core": "每个符号、图形和计算步骤，都要能回到物理定义。",
+      "steps": [
+        {
+          "main": "画图：参考系、坐标轴、正方向、单位",
+          "why": "图示缺项，会让后面的符号和判断失去依据。",
+          "math": false
+        },
+        {
+          "main": "列式：定义、条件、所研究的区间",
+          "why": "先说明式子为什么能用，再代入数值。",
+          "math": false
+        },
+        {
+          "main": "核对：方向、单位、边界与现实含义",
+          "why": "一个看起来整齐的数值，还需要解释。",
+          "math": false
+        }
+      ]
+    }
+  },
+  "hints": {
+    "Q01": "在转向时刻把过程切成两段；先画位置，再决定哪些量相加。",
+    "Q02": "负加速度描述速度如何变化；用 v 的符号判断方向，用 |v| 判断快慢。"
+  },
+  "assets": {}
+}

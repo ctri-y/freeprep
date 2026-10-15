@@ -1,0 +1,959 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ctri-y.github.io/freeprep/course.schema.json",
+  "title": "FreePrep course v1",
+  "description": "Shape contract. Cross-references, educational correctness and provenance truth require separate checks.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "config": {
+      "$ref": "#/$defs/config"
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/page"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "lessons": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "core": {
+            "type": "string",
+            "minLength": 1
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/step"
+            }
+          }
+        },
+        "required": [
+          "core",
+          "steps"
+        ]
+      }
+    },
+    "hints": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "file",
+          "label",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "meta",
+    "config",
+    "pages",
+    "questions",
+    "sources",
+    "lessons"
+  ],
+  "$defs": {
+    "step": {
+      "type": "object",
+      "properties": {
+        "main": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why": {
+          "type": "string",
+          "minLength": 1
+        },
+        "math": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "main",
+        "why"
+      ]
+    },
+    "calculation": {
+      "type": "object",
+      "properties": {
+        "formula": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "formula",
+        "why"
+      ]
+    },
+    "solution": {
+      "type": "object",
+      "properties": {
+        "known": {
+          "type": "string",
+          "minLength": 1
+        },
+        "goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "check": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pitfalls": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/calculation"
+          }
+        }
+      },
+      "required": [
+        "known",
+        "goal",
+        "steps",
+        "check",
+        "pitfalls"
+      ]
+    },
+    "point": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "diagram": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "chart"
+            },
+            "points": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/point"
+              }
+            },
+            "revealPoints": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/point"
+              }
+            },
+            "areas": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/point"
+                }
+              }
+            },
+            "series": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "points": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/point"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "points"
+                ]
+              }
+            },
+            "xmin": {
+              "type": "number"
+            },
+            "xmax": {
+              "type": "number"
+            },
+            "ymin": {
+              "type": "number"
+            },
+            "ymax": {
+              "type": "number"
+            },
+            "xt": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "yt": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "xlabel": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ylabel": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grid": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "numberline"
+            },
+            "xmin": {
+              "type": "number"
+            },
+            "xmax": {
+              "type": "number"
+            },
+            "positions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "x",
+                  "label"
+                ]
+              }
+            },
+            "routes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/point"
+              }
+            },
+            "xlabel": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "map"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "title",
+                  "text"
+                ]
+              }
+            }
+          },
+          "required": [
+            "type",
+            "items"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "table"
+            },
+            "headers": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "rows": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number"
+                  ]
+                }
+              }
+            }
+          },
+          "required": [
+            "type",
+            "headers",
+            "rows"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "image"
+            },
+            "asset": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "type",
+            "asset"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "demo"
+            },
+            "mode": {
+              "const": "motion"
+            },
+            "v0": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "a": {
+              "type": "number",
+              "minimum": -2,
+              "maximum": 2
+            }
+          },
+          "required": [
+            "type",
+            "mode"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caption": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "compound"
+            },
+            "parts": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/diagram"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "parts"
+          ]
+        }
+      ]
+    },
+    "question": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "difficulty": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reasoning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_focus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "citation_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_year": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_place": {
+          "type": "string",
+          "minLength": 1
+        },
+        "year_kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_level": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_kind": {
+          "enum": [
+            "original",
+            "adapted",
+            "verbatim"
+          ]
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adaptation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solution": {
+          "$ref": "#/$defs/solution"
+        },
+        "solution_diagram": {
+          "$ref": "#/$defs/diagram"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "module",
+        "target",
+        "difficulty",
+        "question",
+        "answer",
+        "reasoning",
+        "review_focus",
+        "citation_label",
+        "source_year",
+        "source_place",
+        "year_kind",
+        "evidence_level",
+        "source_kind"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "enum": [
+                  "verbatim",
+                  "adapted"
+                ]
+              }
+            },
+            "required": [
+              "source_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "source_id",
+              "locator"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "adapted"
+              }
+            },
+            "required": [
+              "source_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "adaptation"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "original"
+              }
+            },
+            "required": [
+              "source_kind"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "source_id"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content_locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "teaching_objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "core_concept": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_diagram": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recommended_slide_archetype": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_hierarchy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "appear_immediately": {
+          "type": "string",
+          "minLength": 1
+        },
+        "progressively_revealed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "final_takeaway": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "teaching",
+            "practice",
+            "solution"
+          ]
+        },
+        "required_equations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "logical_sequence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "diagram": {
+          "$ref": "#/$defs/diagram"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "module",
+        "kind",
+        "diagram",
+        "required_equations",
+        "logical_sequence",
+        "teaching_objective",
+        "core_concept",
+        "required_diagram",
+        "recommended_slide_archetype",
+        "visual_hierarchy",
+        "appear_immediately",
+        "progressively_revealed",
+        "final_takeaway"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "published_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accessed_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rights": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "read",
+            "unavailable"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "required": [
+            "file"
+          ]
+        }
+      ]
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "short": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "book": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modules": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "groups": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "n": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "mods": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "n",
+              "title",
+              "mods"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "short",
+        "scope",
+        "book",
+        "region",
+        "modules",
+        "groups"
+      ]
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "max_original_questions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "practice_share_min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "require_question_source_footer": {
+          "type": "boolean"
+        },
+        "deliverables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "excluded_deliverables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "pacing": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": []
+    }
+  }
+}
